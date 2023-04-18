@@ -24,10 +24,7 @@ public class ProductServiceWithExecutors {
 
     public Product retrieveProductDetails(String productId) throws InterruptedException, ExecutionException {
         stopWatch.start();
-
-        /*ProductInfo productInfo = productInfoService.retrieveProductInfo(productId); // blocking call
-        Review review = reviewService.retrieveReviews(productId); // blocking call
-*/        
+       
          Future<ProductInfo> productInfoFuture = executorService.submit(() -> productInfoService.retrieveProductInfo(productId));
          Future<Review> reviewServiceFuture = executorService.submit(()-> reviewService.retrieveReviews(productId));
 
@@ -35,6 +32,7 @@ public class ProductServiceWithExecutors {
          Review review = reviewServiceFuture.get();
         stopWatch.stop();
         log("Total Time Taken : "+ stopWatch.getTime());
+        executorService.shutdown();
         return new Product(productId, productInfo, review);
     }
 
@@ -46,6 +44,7 @@ public class ProductServiceWithExecutors {
         String productId = "ABC123";
         Product product = productService.retrieveProductDetails(productId);
         log("Product is " + product);
+        
 
     }
 }

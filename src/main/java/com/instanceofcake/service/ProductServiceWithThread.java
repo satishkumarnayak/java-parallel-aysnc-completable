@@ -36,8 +36,7 @@ public class ProductServiceWithThread {
     ProductInfo productInfo = productInfoRunnable.getProductInfo();
     Review review = reviewRunnable.getReview();
 
-    // ProductInfo productInfo = productInfoService.retrieveProductInfo(productId); // blocking call
-    // Review review = reviewService.retrieveReviews(productId); // blocking call
+
 
     stopWatch.stop();
     log("Total Time Taken : " + stopWatch.getTime());
