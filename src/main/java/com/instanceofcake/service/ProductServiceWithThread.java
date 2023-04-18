@@ -53,7 +53,7 @@ public class ProductServiceWithThread {
     String productId = "ABC123";
     Product product = productService.retrieveProductDetails(productId);
     log("Product is " + product);
-
+   
   }
 
   private class ProductInfoRunnable implements Runnable {
